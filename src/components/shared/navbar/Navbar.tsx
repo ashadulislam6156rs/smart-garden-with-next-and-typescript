@@ -14,35 +14,29 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Logo from "../logo/Logo";
+import LogInButton from "@/components/auth/LogInButton";
 
 export const Header = () => {
   const router = useRouter();
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, user } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const user = {
-    name: "Touhid",
-    email: "user@gmail.com",
-  };
 
   const menuItems = [
     { title: "Home", url: "/" },
     { title: "Products", url: "/products" },
     { title: "About", url: "/about" },
-    ...(isAuthenticated ? [{ title: "My Events", url: "/my-events" }] : []),
-    ...(isAuthenticated
-      ? [{ title: "Create Event", url: "/events/create" }]
-      : []),
   ];
 
   const handleNavigation = (url: string) => {
     router.push(url);
     setMobileOpen(false);
   };
+  
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white shadow-md">
-      <div className="container max-w-7xl mx-auto flex h-16 items-center justify-between px-4">
+    <header className="sticky top-0 bg-[#ebfdf5] z-50 w-full border-b shadow-md">
+      <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
         <Logo />
 
@@ -78,30 +72,23 @@ export const Header = () => {
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <User className="h-4 w-4 text-green-600" />
                 <span className="font-semibold text-green-700">
-                  {user.name}
+                  {user?.name}
                 </span>
               </div>
               <Button
                 size="sm"
                 onClick={logout}
-                className="bg-red-500 hover:bg-red-600 text-white"
+                className="bg-red-500 cursor-pointer hover:bg-red-600 text-white"
               >
                 Logout
               </Button>
             </>
           ) : (
             <>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleNavigation("/login")}
-                className="text-blue-600 cursor-pointer border-2 border-green-500 hover:bg-blue-50"
-              >
-                Login
-              </Button>
+              <LogInButton></LogInButton>
               <Button
                 size="sm"
-                onClick={() => handleNavigation("/signup")}
+                onClick={() => handleNavigation("/register")}
                 className="bg-green-600 cursor-pointer hover:bg-green-700 text-white"
               >
                 Sign Up
@@ -162,9 +149,9 @@ export const Header = () => {
                   <>
                     <div className="px-3">
                       <div className="text-sm font-medium text-green-700">
-                        {user.name}
+                        {user?.name}
                       </div>
-                      <div className="text-xs text-gray-500">{user.email}</div>
+                      <div className="text-xs text-gray-500">{user?.email}</div>
                     </div>
                     <Button
                       variant="outline"

@@ -31,7 +31,7 @@ const footerSections = [
 
 export const Footer = () => {
   return (
-    <footer className="bg-white text-gray-700 border-t border-gray-200 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 transition-colors">
+    <footer className="bg-[#ebfdf5] text-gray-700 border-t border-gray-200 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 transition-colors">
       <div className="max-w-7xl mx-auto md:px-4">
         {/* Top Grid */}
         <div className="py-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-x-8 gap-y-10">

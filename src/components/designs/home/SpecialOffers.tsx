@@ -1,9 +1,10 @@
 import { ArrowRight, Flame, Star, Zap } from "lucide-react";
 import OfferCard from "./OfferCard";
 import DealBanner from "./DealBanner";
+import { TSpecial } from "@/types/TSpecial";
 
 const SpecialOffers = () => {
-  const offers = [
+  const offers: TSpecial[] = [
     {
       image:
         "https://images.unsplash.com/photo-1466781783364-36c955e42a7f?w=800&h=600&fit=crop",
@@ -109,10 +110,10 @@ const SpecialOffers = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 py-20 px-4">
+    <div className="bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50 p-10 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <div className="inline-block">
             <span className="text-emerald-600 font-semibold text-sm uppercase tracking-wider bg-emerald-100 px-4 py-2 rounded-full inline-flex items-center gap-2">
               <Flame className="w-4 h-4" />
@@ -129,7 +130,7 @@ const SpecialOffers = () => {
         </div>
 
         {/* Banner */}
-        <div className="mb-16">
+        <div className="mb-12">
           <DealBanner
             title="Weekend Mega Sale!"
             subtitle="Extra 10% off when you buy 2 or more items"
@@ -140,26 +141,10 @@ const SpecialOffers = () => {
         </div>
 
         {/* Offers Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {offers.map((offer, index) => (
-            <OfferCard key={index} {...offer} />
+            <OfferCard key={index} offer={offer} />
           ))}
-        </div>
-
-        {/* Bottom CTA */}
-        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl text-center">
-          <Star className="w-16 h-16 text-amber-400 fill-amber-400 mx-auto mb-4" />
-          <h3 className="text-3xl font-bold text-gray-800 mb-4">
-            Want Even More Savings?
-          </h3>
-          <p className="text-gray-600 text-lg mb-6 max-w-2xl mx-auto">
-            Join our VIP club and get exclusive access to members-only deals,
-            early bird offers, and special birthday discounts!
-          </p>
-          <button className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold px-10 py-4 rounded-xl hover:from-emerald-700 hover:to-teal-700 transition-all inline-flex items-center gap-2">
-            Join VIP Club
-            <ArrowRight className="w-5 h-5" />
-          </button>
         </div>
       </div>
     </div>

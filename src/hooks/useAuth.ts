@@ -1,19 +1,20 @@
 "use client";
 
-import { useCallback,  useState } from "react";
+import { useSession, signOut } from "next-auth/react";
+import { useCallback } from "react";
 
 export function useAuth() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  // Check token on mount
- 
+  const { data: session, status } = useSession();
 
   const logout = useCallback(() => {
-    setIsAuthenticated(false);
+    signOut();
   }, []);
 
   return {
-    isAuthenticated,
+    user: session?.user ?? null,
+    session,
+    isAuthenticated: status === "authenticated",
+    isLoading: status === "loading",
     logout,
   };
 }

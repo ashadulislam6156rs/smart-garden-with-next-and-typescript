@@ -79,7 +79,7 @@ const Testimonials = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-teal-50 py-20 px-4">
+    <div className=" bg-gradient-to-br from-slate-50 to-gray-50 py-20 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">

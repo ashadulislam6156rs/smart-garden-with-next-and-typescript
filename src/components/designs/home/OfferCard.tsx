@@ -1,18 +1,23 @@
 "use client"
+import { TSpecial } from "@/types/TSpecial";
 import { ArrowRight, Check, Clock, Flame, Heart, ShoppingBag, Star, Zap } from "lucide-react";
 import { useState } from "react";
 
-const OfferCard = ({
-  image,
-  title,
-  originalPrice,
-  discountPrice,
-  discount,
-  features,
-  badge,
-  badgeColor,
-  timeLeft,
-}) => {
+type offerProps = {offer: TSpecial}
+
+const OfferCard = ({ offer }: offerProps) => {
+  const {
+    image,
+    title,
+    originalPrice,
+    discountPrice,
+    discount,
+    features,
+    badge,
+    badgeColor,
+    timeLeft,
+  } = offer;
+
   const [isFavorite, setIsFavorite] = useState(false);
 
   return (
