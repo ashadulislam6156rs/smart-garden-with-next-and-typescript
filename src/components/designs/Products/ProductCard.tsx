@@ -70,10 +70,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
 
         {/* Warranty */}
-        <div className="flex items-center gap-2 text-sm text-gray-600 mb-5 bg-slate-50 p-3 rounded-lg">
+        {/* <div className="flex items-center gap-2 text-sm text-gray-600 mb-5 bg-slate-50 p-3 rounded-lg">
           <Shield className="w-4 h-4 text-emerald-600" />
           <span>{warranty}</span>
-        </div>
+        </div> */}
 
         {/* Action Buttons */}
         <div className="flex gap-3">

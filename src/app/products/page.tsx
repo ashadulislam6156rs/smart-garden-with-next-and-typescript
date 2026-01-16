@@ -24,13 +24,11 @@ const Products = () => {
    fetchEvents();
  }, []);
     
-
-    console.log(products);
     
 
 
     return (
-      <div className="w-full bg-gradient-to-br from-slate-50 to-gray-50 py-16 min-h-screen">
+      <div className="w-full bg-gradient-to-br py-10 from-slate-50 to-gray-50">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           {/* Section Header */}
           <div className="text-center mb-12">

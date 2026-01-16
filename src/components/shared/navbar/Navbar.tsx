@@ -26,6 +26,7 @@ export const Header = () => {
   const menuItems = [
     { title: "Home", url: "/" },
     { title: "Products", url: "/products" },
+    { title: "Dashboard", url: "/dashboard/overview" },
     { title: "About", url: "/about" },
   ];
 
@@ -38,10 +39,12 @@ export const Header = () => {
     <header className="sticky top-0 bg-[#ebfdf5] z-50 w-full border-b shadow-md">
       <div className="max-w-7xl mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
-        <Logo />
+        <div className="flex-1">
+          <Logo />
+        </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex flex-1 items-center gap-8">
           {menuItems.map((item) => (
             <Link
               key={item.url}
@@ -54,14 +57,14 @@ export const Header = () => {
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center  gap-4">
           {/* Cart Button - Always Visible */}
           {isAuthenticated && (
             <Button
               variant="ghost"
               size="icon"
               onClick={() => handleNavigation("/cart")}
-              className="text-white hover:text-green-600 bg-green-600 rounded-full hover:bg-green-50 transition"
+              className="text-white hover:text-green-600 cursor-pointer bg-green-600 rounded-full hover:bg-green-00 transition"
             >
               <ShoppingCart className="h-5 w-5" />
             </Button>
@@ -84,9 +87,7 @@ export const Header = () => {
                 ) : (
                   <User className="h-4 w-4 text-green-600" />
                 )}
-                <span className="font-semibold text-green-700">
-                  {user?.name}
-                </span>
+
                 {/* <span>{user?.role}</span> */}
               </div>
               <Button
