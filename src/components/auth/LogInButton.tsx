@@ -11,7 +11,7 @@ const LogInButton = () => {
         onClick={() => signIn()}
         className="text-blue-600 cursor-pointer border-2 border-green-500 hover:bg-blue-50"
       >
-        LogIn
+        Sign In
       </Button>
     );
 };

@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import Logo from "../logo/Logo";
+import ScrollToTop from "../ScrollToTop";
+
 
 const footerSections = [
   {
@@ -29,10 +31,11 @@ const footerSections = [
   },
 ];
 
+
 export const Footer = () => {
   return (
     <footer className="bg-[#ebfdf5] text-gray-700 border-t border-gray-200 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 transition-colors">
-      <div className="max-w-7xl mx-auto md:px-4">
+      <div className="max-w-7xl mx-auto px-3 md:px-4">
         {/* Top Grid */}
         <div className="py-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-7 gap-x-8 gap-y-10">
           {/* Logo + Description */}
@@ -102,35 +105,40 @@ export const Footer = () => {
           </span>
 
           {/* Social Icons */}
-          <div className="flex items-center gap-5 text-gray-500 dark:text-gray-400">
-            <Link
-              href="#"
-              target="_blank"
-              className="hover:text-blue-500 dark:hover:text-blue-400"
-            >
-              <TwitterIcon className="h-5 w-5" />
-            </Link>
-            <Link
-              href="#"
-              target="_blank"
-              className="hover:text-pink-500 dark:hover:text-pink-400"
-            >
-              <DribbbleIcon className="h-5 w-5" />
-            </Link>
-            <Link
-              href="#"
-              target="_blank"
-              className="hover:text-purple-500 dark:hover:text-purple-400"
-            >
-              <TwitchIcon className="h-5 w-5" />
-            </Link>
-            <Link
-              href="#"
-              target="_blank"
-              className="hover:text-gray-900 dark:hover:text-gray-100"
-            >
-              <GithubIcon className="h-5 w-5" />
-            </Link>
+          <div className="flex items-center gap-5">
+            <div className="flex items-center gap-5 text-gray-500 dark:text-gray-400">
+              <Link
+                href="#"
+                target="_blank"
+                className="hover:text-blue-500 dark:hover:text-blue-400"
+              >
+                <TwitterIcon className="h-5 w-5" />
+              </Link>
+              <Link
+                href="#"
+                target="_blank"
+                className="hover:text-pink-500 dark:hover:text-pink-400"
+              >
+                <DribbbleIcon className="h-5 w-5" />
+              </Link>
+              <Link
+                href="#"
+                target="_blank"
+                className="hover:text-purple-500 dark:hover:text-purple-400"
+              >
+                <TwitchIcon className="h-5 w-5" />
+              </Link>
+              <Link
+                href="#"
+                target="_blank"
+                className="hover:text-gray-900 dark:hover:text-gray-100"
+              >
+                <GithubIcon className="h-5 w-5" />
+              </Link>
+            </div>
+          <ScrollToTop></ScrollToTop>
+            <div>
+            </div>
           </div>
         </div>
       </div>

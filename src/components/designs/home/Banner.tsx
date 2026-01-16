@@ -66,7 +66,7 @@ export default function Banner() {
       ))}
 
       {/* Main Container */}
-      <div className="max-w-7xl mx-auto md:px-4 relative z-10">
+      <div className="max-w-7xl mx-auto px-3 md:px-4 relative z-10">
         <div
           className="relative overflow-hidden rounded-3xl "
           onMouseEnter={() => setIsHovered(true)}

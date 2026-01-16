@@ -10,6 +10,8 @@ export function useAuth() {
     signOut();
   }, []);
 
+
+
   return {
     user: session?.user ?? null,
     session,

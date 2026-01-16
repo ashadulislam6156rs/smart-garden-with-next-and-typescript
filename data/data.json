@@ -1,0 +1,448 @@
+[
+  {
+    "slug": "indoor-plant-bundle",
+    "image": "https://images.unsplash.com/photo-1466781783364-36c955e42a7f?w=800&h=600&fit=crop",
+    "gallery": [
+      "https://images.unsplash.com/photo-1466781783364-36c955e42a7f",
+      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6",
+      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e"
+    ],
+    "title": "Indoor Plant Bundle",
+    "shortDescription": "A premium indoor plant set to refresh your home or office.",
+    "longDescription": "This Indoor Plant Bundle is designed to enhance your indoor environment by improving air quality and adding a modern natural aesthetic.",
+    "category": "Indoor Plants",
+    "tags": ["indoor", "home decor", "air purifying"],
+    "pricing": {
+      "currency": "USD",
+      "originalPrice": 149.99,
+      "discountPrice": 89.99,
+      "discountPercent": 40
+    },
+    "stock": { "status": "In Stock", "quantity": 25 },
+    "badge": {
+      "text": "Hot Deal",
+      "color": "bg-gradient-to-r from-red-500 to-orange-500"
+    },
+    "timeLeft": "2h 45m left",
+    "rating": { "average": 4.8, "totalReviews": 312 },
+    "features": [
+      "5 Premium Indoor Plants",
+      "Free Decorative Pots",
+      "Care Guide Included",
+      "Free Home Delivery"
+    ],
+    "specifications": {
+      "plantCount": 5,
+      "potMaterial": "Ceramic",
+      "lightRequirement": "Low to Medium Light",
+      "wateringFrequency": "2–3 times per week",
+      "petFriendly": false
+    },
+    "careInstructions": [
+      "Avoid direct sunlight",
+      "Water when topsoil is dry",
+      "Wipe leaves weekly"
+    ],
+    "delivery": {
+      "estimatedTime": "3–5 business days",
+      "shippingCost": "Free",
+      "returnPolicy": "7 days easy return"
+    },
+    "seller": {
+      "name": "GreenLeaf Store",
+      "verified": true,
+      "supportEmail": "support@greenleaf.com"
+    },
+    "warranty": "7 days replacement warranty",
+    "createdAt": "2026-01-10"
+  },
+
+  {
+    "slug": "succulent-collection",
+    "image": "https://images.unsplash.com/photo-1459156212016-c812468e2115?w=800&h=600&fit=crop",
+    "gallery": ["https://images.unsplash.com/photo-1459156212016-c812468e2115"],
+    "title": "Succulent Collection",
+    "shortDescription": "Low-maintenance succulents perfect for beginners.",
+    "longDescription": "A handpicked selection of succulents requiring minimal care and watering.",
+    "category": "Succulents",
+    "tags": ["succulent", "low maintenance", "desk plants"],
+    "pricing": {
+      "currency": "USD",
+      "originalPrice": 79.99,
+      "discountPrice": 47.99,
+      "discountPercent": 40
+    },
+    "stock": { "status": "In Stock", "quantity": 40 },
+    "badge": {
+      "text": "Flash Sale",
+      "color": "bg-gradient-to-r from-purple-500 to-pink-500"
+    },
+    "timeLeft": "5h 12m left",
+    "rating": { "average": 4.6, "totalReviews": 198 },
+    "features": [
+      "10 Assorted Succulents",
+      "Mini Planters Included",
+      "Low Maintenance",
+      "Perfect for Beginners"
+    ],
+    "specifications": {
+      "plantCount": 10,
+      "lightRequirement": "Bright Indirect Light",
+      "wateringFrequency": "Once per week",
+      "petFriendly": true
+    },
+    "delivery": {
+      "estimatedTime": "2–4 business days",
+      "shippingCost": "Free",
+      "returnPolicy": "7 days easy return"
+    },
+    "seller": {
+      "name": "Urban Plants",
+      "verified": true,
+      "supportEmail": "support@urbanplants.com"
+    },
+    "createdAt": "2026-01-08"
+  },
+
+  {
+    "slug": "herb-garden-starter-kit",
+    "image": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&h=600&fit=crop",
+    "gallery": ["https://images.unsplash.com/photo-1416879595882-3373a0480b5b"],
+    "title": "Herb Garden Starter Kit",
+    "shortDescription": "Grow fresh herbs easily at home.",
+    "longDescription": "An all-in-one kit for growing organic herbs indoors or on your balcony.",
+    "category": "Herbs",
+    "tags": ["herb", "organic", "kitchen garden"],
+    "pricing": {
+      "currency": "USD",
+      "originalPrice": 59.99,
+      "discountPrice": 35.99,
+      "discountPercent": 40
+    },
+    "stock": { "status": "Limited", "quantity": 15 },
+    "badge": {
+      "text": "Best Seller",
+      "color": "bg-gradient-to-r from-amber-500 to-yellow-500"
+    },
+    "timeLeft": "1 day left",
+    "rating": { "average": 4.7, "totalReviews": 256 },
+    "features": ["6 Organic Herb Seeds", "Soil & Pots", "Growing Guide"],
+    "specifications": {
+      "plantCount": 6,
+      "lightRequirement": "Bright Sunlight",
+      "wateringFrequency": "Daily Light Water",
+      "petFriendly": true
+    },
+    "delivery": {
+      "estimatedTime": "3–5 business days",
+      "shippingCost": "Free",
+      "returnPolicy": "7 days easy return"
+    },
+    "seller": {
+      "name": "FreshGrow",
+      "verified": true,
+      "supportEmail": "support@freshgrow.com"
+    },
+    "createdAt": "2026-01-06"
+  },
+
+  {
+    "slug": "tropical-paradise-set",
+    "image": "https://images.unsplash.com/photo-1584589167171-541ce45f1eea?w=800&h=600&fit=crop",
+    "gallery": ["https://images.unsplash.com/photo-1584589167171-541ce45f1eea"],
+    "title": "Tropical Paradise Set",
+    "shortDescription": "Bring tropical vibes to your living space.",
+    "longDescription": "A luxury tropical plant set curated for modern homes.",
+    "category": "Tropical Plants",
+    "tags": ["tropical", "luxury", "large plants"],
+    "pricing": {
+      "currency": "USD",
+      "originalPrice": 199.99,
+      "discountPrice": 119.99,
+      "discountPercent": 40
+    },
+    "stock": { "status": "In Stock", "quantity": 10 },
+    "badge": {
+      "text": "Hot Deal",
+      "color": "bg-gradient-to-r from-green-500 to-emerald-500"
+    },
+    "timeLeft": "3h 28m left",
+    "rating": { "average": 4.9, "totalReviews": 174 },
+    "features": ["3 Large Plants", "Premium Pots", "Plant Fertilizer"],
+    "specifications": {
+      "plantCount": 3,
+      "lightRequirement": "Bright Indirect Light",
+      "wateringFrequency": "Twice a week",
+      "petFriendly": false
+    },
+    "delivery": {
+      "estimatedTime": "4–6 business days",
+      "shippingCost": "Free",
+      "returnPolicy": "7 days easy return"
+    },
+    "seller": {
+      "name": "TropicGreen",
+      "verified": true,
+      "supportEmail": "support@tropicgreen.com"
+    },
+    "createdAt": "2026-01-05"
+  },
+  {
+    "slug": "air-purifying-plant-pack",
+    "image": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=800&h=600&fit=crop",
+    "gallery": ["https://images.unsplash.com/photo-1485955900006-10f4d324d411"],
+    "title": "Air Purifying Plant Pack",
+    "shortDescription": "Improve indoor air quality naturally.",
+    "longDescription": "A set of NASA-recommended plants that help purify indoor air.",
+    "category": "Air Purifying",
+    "tags": ["health", "air purifier", "indoor"],
+    "pricing": {
+      "currency": "USD",
+      "originalPrice": 129.99,
+      "discountPrice": 77.99,
+      "discountPercent": 40
+    },
+    "stock": { "status": "In Stock", "quantity": 30 },
+    "badge": {
+      "text": "Flash Sale",
+      "color": "bg-gradient-to-r from-blue-500 to-cyan-500"
+    },
+    "timeLeft": "8h left",
+    "rating": { "average": 4.5, "totalReviews": 221 },
+    "features": ["4 Air Purifying Plants", "Modern Planters", "Health Guide"],
+    "specifications": {
+      "plantCount": 4,
+      "lightRequirement": "Low Light",
+      "wateringFrequency": "Once per week",
+      "petFriendly": false
+    },
+    "delivery": {
+      "estimatedTime": "3–5 business days",
+      "shippingCost": "Free",
+      "returnPolicy": "7 days easy return"
+    },
+    "seller": {
+      "name": "PureAir Plants",
+      "verified": true,
+      "supportEmail": "support@pureair.com"
+    },
+    "createdAt": "2026-01-04"
+  },
+  {
+    "slug": "flowering-plants-collection",
+    "image": "https://images.unsplash.com/photo-1470058869958-2a77ade41c02?w=800&h=600&fit=crop",
+    "gallery": ["https://images.unsplash.com/photo-1470058869958-2a77ade41c02"],
+    "title": "Flowering Plants Collection",
+    "shortDescription": "Colorful flowering plants to brighten your space.",
+    "longDescription": "A carefully selected collection of flowering plants that bloom beautifully and enhance your home décor.",
+    "category": "Flowering Plants",
+    "tags": ["flowers", "colorful", "home decor"],
+    "pricing": {
+      "currency": "USD",
+      "originalPrice": 89.99,
+      "discountPrice": 53.99,
+      "discountPercent": 40
+    },
+    "stock": { "status": "In Stock", "quantity": 22 },
+    "badge": {
+      "text": "Best Seller",
+      "color": "bg-gradient-to-r from-rose-500 to-pink-500"
+    },
+    "timeLeft": "12h left",
+    "rating": { "average": 4.6, "totalReviews": 189 },
+    "features": [
+      "6 Blooming Plants",
+      "Long-lasting Flowers",
+      "Care Instructions Included"
+    ],
+    "specifications": {
+      "plantCount": 6,
+      "lightRequirement": "Bright Indirect Light",
+      "wateringFrequency": "2–3 times per week",
+      "petFriendly": false
+    },
+    "delivery": {
+      "estimatedTime": "3–5 business days",
+      "shippingCost": "Free",
+      "returnPolicy": "7 days easy return"
+    },
+    "seller": {
+      "name": "BloomHouse",
+      "verified": true,
+      "supportEmail": "support@bloomhouse.com"
+    },
+    "createdAt": "2026-01-03"
+  },
+
+  {
+    "slug": "bonsai-starter-pack",
+    "image": "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=800&h=600&fit=crop",
+    "gallery": ["https://images.unsplash.com/photo-1501004318641-b39e6451bec6"],
+    "title": "Bonsai Starter Pack",
+    "shortDescription": "Start your bonsai journey with ease.",
+    "longDescription": "A beginner-friendly bonsai kit including tools, pot, and a detailed growing guide.",
+    "category": "Bonsai",
+    "tags": ["bonsai", "zen", "indoor"],
+    "pricing": {
+      "currency": "USD",
+      "originalPrice": 99.99,
+      "discountPrice": 59.99,
+      "discountPercent": 40
+    },
+    "stock": { "status": "Limited", "quantity": 12 },
+    "badge": {
+      "text": "New Arrival",
+      "color": "bg-gradient-to-r from-gray-500 to-slate-500"
+    },
+    "timeLeft": "18h left",
+    "rating": { "average": 4.4, "totalReviews": 143 },
+    "features": ["Bonsai Tree", "Training Tools", "Beginner Guide"],
+    "specifications": {
+      "plantCount": 1,
+      "lightRequirement": "Bright Natural Light",
+      "wateringFrequency": "Every 2 days",
+      "petFriendly": false
+    },
+    "delivery": {
+      "estimatedTime": "4–6 business days",
+      "shippingCost": "Free",
+      "returnPolicy": "7 days easy return"
+    },
+    "seller": {
+      "name": "ZenGarden",
+      "verified": true,
+      "supportEmail": "support@zengarden.com"
+    },
+    "createdAt": "2026-01-02"
+  },
+
+  {
+    "slug": "office-desk-plants",
+    "image": "https://images.unsplash.com/photo-1493666438817-866a91353ca9?w=800&h=600&fit=crop",
+    "gallery": ["https://images.unsplash.com/photo-1493666438817-866a91353ca9"],
+    "title": "Office Desk Plants",
+    "shortDescription": "Compact plants ideal for office desks.",
+    "longDescription": "Small and stylish desk plants that require minimal care and fit perfectly in office environments.",
+    "category": "Office Plants",
+    "tags": ["office", "desk", "low light"],
+    "pricing": {
+      "currency": "USD",
+      "originalPrice": 49.99,
+      "discountPrice": 29.99,
+      "discountPercent": 40
+    },
+    "stock": { "status": "In Stock", "quantity": 50 },
+    "badge": {
+      "text": "Office Pick",
+      "color": "bg-gradient-to-r from-indigo-500 to-blue-500"
+    },
+    "timeLeft": "1 day left",
+    "rating": { "average": 4.3, "totalReviews": 211 },
+    "features": ["2 Desk Plants", "Compact Size", "Low Light Friendly"],
+    "specifications": {
+      "plantCount": 2,
+      "lightRequirement": "Low Light",
+      "wateringFrequency": "Once per week",
+      "petFriendly": true
+    },
+    "delivery": {
+      "estimatedTime": "2–4 business days",
+      "shippingCost": "Free",
+      "returnPolicy": "7 days easy return"
+    },
+    "seller": {
+      "name": "OfficeGreen",
+      "verified": true,
+      "supportEmail": "support@officegreen.com"
+    },
+    "createdAt": "2026-01-01"
+  },
+
+  {
+    "slug": "hanging-plant-set",
+    "image": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&h=600&fit=crop",
+    "gallery": ["https://images.unsplash.com/photo-1441974231531-c6227db76b6e"],
+    "title": "Hanging Plant Set",
+    "shortDescription": "Stylish hanging plants for modern interiors.",
+    "longDescription": "A decorative hanging plant set perfect for balconies, windows, and indoor spaces.",
+    "category": "Hanging Plants",
+    "tags": ["hanging", "balcony", "decor"],
+    "pricing": {
+      "currency": "USD",
+      "originalPrice": 69.99,
+      "discountPrice": 41.99,
+      "discountPercent": 40
+    },
+    "stock": { "status": "In Stock", "quantity": 18 },
+    "badge": {
+      "text": "Trending",
+      "color": "bg-gradient-to-r from-teal-500 to-green-500"
+    },
+    "timeLeft": "9h left",
+    "rating": { "average": 4.5, "totalReviews": 167 },
+    "features": [
+      "3 Hanging Plants",
+      "Durable Rope Hangers",
+      "Indoor & Balcony Use"
+    ],
+    "specifications": {
+      "plantCount": 3,
+      "lightRequirement": "Bright Indirect Light",
+      "wateringFrequency": "Twice per week",
+      "petFriendly": false
+    },
+    "delivery": {
+      "estimatedTime": "3–5 business days",
+      "shippingCost": "Free",
+      "returnPolicy": "7 days easy return"
+    },
+    "seller": {
+      "name": "UrbanDecor",
+      "verified": true,
+      "supportEmail": "support@urbandecor.com"
+    },
+    "createdAt": "2025-12-30"
+  },
+
+  {
+    "slug": "mini-cactus-pack",
+    "image": "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=800&h=600&fit=crop",
+    "gallery": ["https://images.unsplash.com/photo-1501004318641-b39e6451bec6"],
+    "title": "Mini Cactus Pack",
+    "shortDescription": "Tiny cactus plants with almost zero maintenance.",
+    "longDescription": "A budget-friendly mini cactus set ideal for beginners and small spaces.",
+    "category": "Cactus",
+    "tags": ["cactus", "low water", "budget"],
+    "pricing": {
+      "currency": "USD",
+      "originalPrice": 39.99,
+      "discountPrice": 23.99,
+      "discountPercent": 40
+    },
+    "stock": { "status": "In Stock", "quantity": 60 },
+    "badge": {
+      "text": "Budget Pick",
+      "color": "bg-gradient-to-r from-lime-500 to-green-500"
+    },
+    "timeLeft": "2 days left",
+    "rating": { "average": 4.2, "totalReviews": 132 },
+    "features": ["5 Mini Cactus", "Very Low Water", "Beginner Friendly"],
+    "specifications": {
+      "plantCount": 5,
+      "lightRequirement": "Direct Sunlight",
+      "wateringFrequency": "Once every 10 days",
+      "petFriendly": false
+    },
+    "delivery": {
+      "estimatedTime": "2–4 business days",
+      "shippingCost": "Free",
+      "returnPolicy": "7 days easy return"
+    },
+    "seller": {
+      "name": "CactusWorld",
+      "verified": true,
+      "supportEmail": "support@cactusworld.com"
+    },
+    "createdAt": "2025-12-29"
+  }
+]

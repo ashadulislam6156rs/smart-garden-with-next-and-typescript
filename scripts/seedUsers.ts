@@ -4,7 +4,7 @@ import * as bcrypt from "bcrypt";
 import clientPromise from "../src/lib/mongodb";
 
 
-async function seedUsers() {
+export async function seedUsers() {
   const client = await clientPromise;
   const db = client.db();
 
@@ -33,7 +33,7 @@ async function seedUsers() {
   const hashedAdminPassword = await bcrypt.hash(ADMIN_PASSWORD, saltRounds);
   const hashedUserPassword = await bcrypt.hash(USER_PASSWORD, saltRounds);
 
-  await db.collection("users").insertMany([
+   await db.collection("users").insertMany([
     {
       username: ADMIN_USERNAME,
       email: ADMIN_EMAIL,

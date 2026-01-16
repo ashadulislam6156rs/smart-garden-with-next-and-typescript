@@ -1,13 +1,8 @@
+import clientPromise from "@/lib/mongodb";
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import * as bcrypt from "bcrypt";
 
-type TUser = {
-  id: string;
-  name: string;
-  password: string;
-};
-
-const userList: TUser[] = [{id:"1", name: "hablu", password: "1234" }];
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -15,10 +10,10 @@ export const authOptions: NextAuthOptions = {
       name: "Credentials",
 
       credentials: {
-        username: {
-          label: "Username",
+        email: {
+          label: "Email",
           type: "text",
-          placeholder: "Enter username..",
+          placeholder: "Enter email..",
         },
         password: {
           label: "Password",
@@ -30,26 +25,48 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         if (!credentials) return null;
 
-        const { username, password } = credentials;
+        const { email, password } = credentials;
 
-        const user = userList.find((user) => user.name === username);
+        if (!email || !password) {
+          throw new Error("Please enter your username/email and password");
+        }
 
-        if (!user) return null;
+        const client = await clientPromise;
+        const db = client.db();
+        const user = await db
+          .collection("users")
+          .findOne({ email: credentials.email });
 
-        const isPasswordCorrect = user.password === password;
+        if (!user) {
+          throw new Error("No user found with this username/email");
+        }
+
+        const isPasswordCorrect = await bcrypt.compare(
+          credentials.password,
+          user.password
+        );
+
+        if (!isPasswordCorrect) {
+          throw new Error("Incorrect password");
+        }
 
         if (isPasswordCorrect) {
-           return {
-             id: user.id,
-             name: user.name,
-           };
+          return {
+            id: user._id.toString(),
+            name: user.fullName,
+            email: user.email,
+            role: user.role,
+            image: user.photoURL,
+          };
         }
 
         return null;
       },
     }),
   ],
-
+  pages: {
+    signIn: "/login",
+  },
 };
 
 const handler = NextAuth(authOptions);

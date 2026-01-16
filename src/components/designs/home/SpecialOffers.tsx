@@ -1,4 +1,4 @@
-import { ArrowRight, Flame, Star, Zap } from "lucide-react";
+import {  Flame, Zap } from "lucide-react";
 import OfferCard from "./OfferCard";
 import DealBanner from "./DealBanner";
 import { TSpecial } from "@/types/TSpecial";
