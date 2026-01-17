@@ -79,7 +79,7 @@ const Testimonials = () => {
   );
 
   return (
-    <div className=" bg-gradient-to-br from-slate-50 to-gray-50 py-20 px-4">
+    <div className=" bg-gradient-to-br from-slate-50 to-gray-50 py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -88,7 +88,7 @@ const Testimonials = () => {
               Testimonials
             </span>
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-gray-800 mt-6 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mt-6 mb-4">
             What Our Customers Say
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">

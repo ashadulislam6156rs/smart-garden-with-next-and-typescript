@@ -1,120 +1,136 @@
-"use client";
-
+"use client"
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { TProductDetails } from "@/types/TProductDetails";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
-export default function CreateProductPage() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<TProductDetails>();
+const UpdateProduct = () => {
+  const params = useParams();
+  const id = params?.id as string;
 
-  const router = useRouter();
-
-  const onSubmit = async (data: TProductDetails) => {
-
-    let finalPhotoURL = "";
-
-    if (data.image && data.image.length > 0) {
-      const formData = new FormData();
-      formData.append("image", data.image[0]);
-
-      const imgResponse = await axios.post(
-        `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMAGE_API_KEY}`,
-        formData
-      );
-      finalPhotoURL = imgResponse.data.data.url;
-      }
-
-      const pricing1 = data.pricing;
-      pricing1.currency = "USD";
-
-      const newProduct = {
-        slug: data.title,
-        title: data.title,
-        gallery: data.gallery?.trim().split(","),
-        shortDescription: data.shortDescription,
-        longDescription: data.longDescription,
-        category: data.category,
-        tags: data.tags.trim().split(","),
-        pricing: pricing1,
-        stock: data.stock,
-        badge: {
-          text: null,
-          color: null,
-        },
-        timeLeft: data.timeLeft,
-        rating: {
-          average: 0,
-          totalReviews: 0,
-        },
-        features: data.features.trim().split(","),
-        specifications: {
-          plantCount: 0,
-          potMaterial: null,
-          lightRequirement: null,
-          wateringFrequency: null,
-          petFriendly: false,
-        },
-        careInstructions: data.careInstructions.trim().split(","),
-        delivery: {
-          estimatedTime: "3-5 business days",
-          shippingCost: "Free",
-          returnPolicy: "7 days easy return",
-        },
-        seller: {
-          name: "SmartGarden",
-          verified: true,
-          supportEmail: "support@smartgarden.com",
-        },
-        image: finalPhotoURL,
-        warranty: null,
-        createdAt: new Date(),
-      };
+  
+  // const [product, setProduct] = useState<TProductDetails | null>(null);
+  const [loading, setLoading] = useState(false);
 
 
-    const res = await axios.post("/api/products", newProduct);
+ const {
+   register,
+   handleSubmit,
+   reset,
+   formState: { isSubmitting },
+ } = useForm<TProductDetails>({
+   defaultValues: {
+     title: "",
+     shortDescription: "",
+     longDescription: "",
+     category: "",
+     tags: "",
+     image: "",
+     gallery: "",
+     pricing: {
+       originalPrice: 0.0,
+       discountPrice: 0.0,
+       discountPercent: 0.0,
+     },
+     stock: {
+       status: "",
+       quantity: 0,
+     },
+     timeLeft: "",
+     careInstructions: "",
+     features: "",
+   },
+ });
 
-    if (res) {
-      toast.success("Product created successfully!");
-      router.push("/products");
-    } else {
-      toast.error("Failed to create product");
-    }
+
+
+   // Fetch event data when modal opens
+   useEffect(() => {
+     if (!id) return;
+
+     const fetchProduct = async () => {
+       try {
+         const res = await axios.get(`/api/products/${id}`);
+         const data: TProductDetails = res.data;
+
+         reset({
+           title: data.title,
+           shortDescription: data.shortDescription,
+           longDescription: data.longDescription,
+           category: data.category,
+            image: data.image,
+           tags: data.tags,
+           gallery: data.gallery,
+           features: data.features,
+           careInstructions: data.careInstructions || "null",
+
+           pricing: {
+             originalPrice: data.pricing?.originalPrice,
+             discountPrice: data.pricing?.discountPrice,
+             discountPercent: data.pricing?.discountPercent,
+           },
+
+           stock: {
+             status: data.stock?.status,
+             quantity: data.stock?.quantity,
+           },
+
+           timeLeft: data.timeLeft,
+         });
+       } catch (err) {
+         console.error("Fetch failed", err);
+       }
+     };
+
+     fetchProduct();
+   }, [id, reset]);
+
+
+  const handleUpdateProduct = async (data: TProductDetails) => {
+
+
+     setLoading(true);
+     try {
+       const payload = {
+         ...data,
+       };
+
+      const res =  await axios.patch(`/api/products/${id}`, payload);
+
+       if(res){
+         toast.success("Product updated successfully");
+       }
+      
+     } catch (error) {
+       console.error(error);
+       alert("Failed to update product");
+     } finally {
+       setLoading(false);
+     }
   };
 
+
+  
+
   return (
-    <main className="flex items-center justify-center md:p-4">
+    <div className="flex items-center justify-center md:p-4">
       <Card className="w-full md:max-w-4xl">
         <CardHeader>
-          <CardTitle >Create Product</CardTitle>
+          <CardTitle>Update Product</CardTitle>
           <CardDescription>
-            Fill in the details to create a new product
+            Fill in the details to update a product
           </CardDescription>
         </CardHeader>
 
         <CardContent>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(handleUpdateProduct)}>
             <div className="flex flex-col md:flex-row gap-5 pb-5">
               {/* LEFT GROUP */}
               <FieldGroup>
@@ -167,8 +183,9 @@ export default function CreateProductPage() {
                 <Field>
                   <FieldLabel>Main Image</FieldLabel>
                   <Input
+                    type="text"
+                    placeholder="Enter image URL"
                     {...register("image", { required: true })}
-                    type="file"
                   />
                 </Field>
 
@@ -190,8 +207,11 @@ export default function CreateProductPage() {
                   <FieldLabel>Original Price</FieldLabel>
                   <Input
                     placeholder="e.g. 149"
+                    step="0.01"
                     type="number"
-                    {...register("pricing.originalPrice")}
+                    {...register("pricing.originalPrice", {
+                      valueAsNumber: true,
+                    })}
                   />
                 </Field>
 
@@ -200,8 +220,11 @@ export default function CreateProductPage() {
                   <FieldLabel>Discount Price</FieldLabel>
                   <Input
                     placeholder="e.g. 89"
+                    step="0.01"
                     type="number"
-                    {...register("pricing.discountPrice")}
+                    {...register("pricing.discountPrice", {
+                      valueAsNumber: true,
+                    })}
                   />
                 </Field>
 
@@ -251,23 +274,6 @@ export default function CreateProductPage() {
                     {...register("careInstructions")}
                   />
                 </Field>
-
-                {/* Rating */}
-                {/* <Field>
-                  <FieldLabel>Average Rating</FieldLabel>
-                  <Input
-                    type="number"
-                    step="0.1"
-                    {...register("rating.average")}
-                  />
-                </Field> */}
-
-                {/* Reviews */}
-                {/* <Field>
-                  <FieldLabel>Total Reviews</FieldLabel>
-                  <Input type="number" {...register("rating.totalReviews")} />
-                </Field> */}
-
                 {/* Features */}
                 <Field>
                   <FieldLabel>Features (Coma separeted)</FieldLabel>
@@ -279,13 +285,16 @@ export default function CreateProductPage() {
               </FieldGroup>
             </div>
 
-            {/* SUBMIT */}
-            <Field>
-              <Button type="submit">Create Product</Button>
+            <Field className="mt-4 flex justify-end gap-2">
+              <Button type="submit" disabled={loading || isSubmitting}>
+                {loading ? "Updating..." : "Update Product"}
+              </Button>
             </Field>
           </form>
         </CardContent>
       </Card>
-    </main>
+    </div>
   );
-}
+};
+
+export default UpdateProduct;

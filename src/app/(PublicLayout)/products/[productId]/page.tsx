@@ -37,8 +37,6 @@ const ProductDetails = () => {
   useEffect(() => {
     if (!id) return;
 
-    setLoading(true); 
-
     async function fetchProducts() {
       try {
         const res = await axios.get(`/api/products/${id}`);
@@ -61,9 +59,7 @@ const ProductDetails = () => {
   };
 
 
-  if (id !== product?._id) {
-  return <p>Product Not Found</p>
-}
+
   if (loading || !product) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -72,7 +68,9 @@ const ProductDetails = () => {
     );
   }
 
-
+  if (!id) {
+    return <p>Product Not Found</p>;
+  }
     
 
     return (
@@ -122,7 +120,7 @@ const ProductDetails = () => {
                         onClick={() =>
                           setSelectedImage(
                             (selectedImage - 1 + product.gallery.length) %
-                              product.gallery.length
+                              product.gallery.length,
                           )
                         }
                         className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md transition-all"
@@ -132,7 +130,7 @@ const ProductDetails = () => {
                       <button
                         onClick={() =>
                           setSelectedImage(
-                            (selectedImage + 1) % product.gallery.length
+                            (selectedImage + 1) % product.gallery.length,
                           )
                         }
                         className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md transition-all"
@@ -142,27 +140,6 @@ const ProductDetails = () => {
                     </>
                   )}
                 </div>
-
-                {/* Thumbnail Gallery */}
-                {/* <div className="flex gap-2">
-                  {product.gallery?.map((img, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedImage(index)}
-                      className={`flex-1 aspect-square rounded-lg overflow-hidden border-2 transition-all ${
-                        selectedImage === index
-                          ? "border-emerald-500 ring-2 ring-emerald-200"
-                          : "border-gray-200 hover:border-emerald-300"
-                      }`}
-                    >
-                      <img
-                        src={img}
-                        alt={`View ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                  ))}
-                </div> */}
 
                 {/* Quick Actions */}
                 <div className="flex gap-2">
@@ -238,12 +215,10 @@ const ProductDetails = () => {
                 <div className="mb-3">
                   <div className="flex items-baseline gap-3 mb-1">
                     <span className="text-3xl md:text-4xl font-bold text-emerald-600">
-                      {product.pricing.currency}{" "}
-                      {product.pricing.discountPrice}
+                      {product.pricing.currency} {product.pricing.discountPrice}
                     </span>
                     <span className="text-xl text-gray-400 line-through">
-                      {product.pricing.currency}{" "}
-                      {product.pricing.originalPrice}
+                      {product.pricing.currency} {product.pricing.originalPrice}
                     </span>
                     <span className="bg-red-100 text-red-600 px-2.5 py-1 rounded-md font-bold text-sm">
                       -{product.pricing.discountPercent}%
@@ -296,11 +271,11 @@ const ProductDetails = () => {
                   </div>
 
                   <div className="flex gap-3">
-                    <button className="flex-1 bg-gradient-to-r from-emerald-500 to-emerald-700 hover:from-emerald-600 hover:to-emerald-700 text-white font-bold h-8 rounded-lg transition-all shadow-md hover:shadow-lg flex cursor-pointer items-center justify-center gap-2">
+                    <button className="flex-1 bg-gradient-to-r from-emerald-500 to-emerald-700 hover:from-emerald-600 hover:to-emerald-700 text-white font-bold py-2 rounded-lg transition-all shadow-md hover:shadow-lg flex cursor-pointer items-center justify-center gap-2">
                       <ShoppingCart className="w-5 h-5" />
                       Add to Cart
                     </button>
-                    <button className="bg-chart-3 flex-1 text-green-600 font-bold h-8 rounded-lg transition-all shadow-md flex items-center cursor-pointer justify-center gap-2">
+                    <button className="bg-emerald-600 flex-1 text-white font-bold py-2 rounded-lg transition-all shadow-md flex items-center cursor-pointer justify-center gap-2">
                       Buy Now
                     </button>
                   </div>
@@ -442,19 +417,26 @@ const ProductDetails = () => {
                       Care Instructions
                     </h3>
                     <div className="space-y-2">
-                      {product.careInstructions?.map((instruction, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg"
-                        >
-                          <div className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xs">
-                            {idx + 1}
+                      {Array.isArray(product?.careInstructions) &&
+                      product.careInstructions.length > 0 ? (
+                        product.careInstructions.map((instruction, idx) => (
+                          <div
+                            key={idx}
+                            className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg"
+                          >
+                            <div className="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold text-xs">
+                              {idx + 1}
+                            </div>
+                            <span className="text-gray-700 text-sm">
+                              {instruction}
+                            </span>
                           </div>
-                          <span className="text-gray-700 text-sm">
-                            {instruction}
-                          </span>
-                        </div>
-                      ))}
+                        ))
+                      ) : (
+                        <p className="text-gray-400 text-sm">
+                          No care instructions available
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>

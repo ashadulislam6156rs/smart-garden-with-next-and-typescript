@@ -20,6 +20,8 @@ export async function GET() {
       currency: product.pricing.currency,
       originalPrice: product.pricing.originalPrice,
       discountPrice: product.pricing.discountPrice,
+      stock: product.stock.status,
+      stockQuantity: product.stock.quantity,
       discountPercent: product.pricing.discountPercent,
       warranty: product.warranty,
     }));
@@ -68,3 +70,7 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+
+
+

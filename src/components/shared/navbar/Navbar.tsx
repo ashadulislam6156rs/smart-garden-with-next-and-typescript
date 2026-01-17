@@ -10,24 +10,31 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { Menu, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import Logo from "../logo/Logo";
 import LogInButton from "@/components/auth/LogInButton";
 import Image from "next/image";
-
 
 export const Header = () => {
   const router = useRouter();
   const { isAuthenticated, logout, user } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+
+  // ** Active Path
+  const pathname = usePathname();
+
   const menuItems = [
     { title: "Home", url: "/" },
     { title: "Products", url: "/products" },
-    { title: "Dashboard", url: "/dashboard/overview" },
+
+    ...(user?.email
+      ? [{ title: "Dashboard", url: "/dashboard/all-products" }]
+      : []),
     { title: "About", url: "/about" },
   ];
+  const isActive = (url: string) => pathname === url;
 
   const handleNavigation = (url: string) => {
     router.push(url);
@@ -48,7 +55,12 @@ export const Header = () => {
             <Link
               key={item.url}
               href={item.url}
-              className="text-sm font-medium text-gray-700 hover:text-green-600 transition-colors"
+              className={`text-sm font-medium transition-colors
+    ${
+      isActive(item.url)
+        ? "text-green-600 font-semibold border-b-2 border-green-600 pb-1"
+        : "text-gray-700 hover:text-green-600"
+    }`}
             >
               {item.title}
             </Link>
@@ -149,7 +161,12 @@ export const Header = () => {
                     <button
                       key={item.url}
                       onClick={() => handleNavigation(item.url)}
-                      className="w-full text-left px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-green-100 hover:text-green-700 transition"
+                      className={`w-full text-left px-3 py-2 rounded-md text-sm transition
+    ${
+      isActive(item.url)
+        ? "bg-green-100 text-green-700 font-semibold"
+        : "text-gray-700 hover:bg-green-100 hover:text-green-700"
+    }`}
                     >
                       {item.title}
                     </button>

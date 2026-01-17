@@ -44,84 +44,84 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           items: [
             {
               title: "Create product",
-              url: "create-product",
+              url: "/dashboard/create-product",
             },
             {
               title: "All products",
-              url: "all-products",
+              url: "/dashboard/all-products",
             },
-            {
-              title: "Order history",
-              url: "#",
-            },
+            // {
+            //   title: "Order history",
+            //   url: "#",
+            // },
           ],
         },
-        {
-          title: "Users Management",
-          url: "#",
-          icon: FaUsers,
-          items: [
-            {
-              title: "Manage role",
-              url: "#",
-            },
-            {
-              title: "All Users",
-              url: "#",
-            },
-            {
-              title: "Report clients",
-              url: "#",
-            },
-          ],
-        },
-        {
-          title: "Order Management",
-          url: "#",
-          icon: MdOutlineShoppingCartCheckout,
-          items: [
-            {
-              title: "Order approve/reject",
-              url: "#",
-            },
-            {
-              title: "Delivery man assign",
-              url: "#",
-            },
-            {
-              title: "Order status update",
-              url: "#",
-            },
-          ],
-        },
-        {
-          title: "Settings",
-          url: "#",
-          icon: Settings2,
-          items: [
-            {
-              title: "General",
-              url: "#",
-            },
-            {
-              title: "Edit profile",
-              url: "#",
-            },
-          ],
-        },
+        // {
+        //   title: "Users Management",
+        //   url: "#",
+        //   icon: FaUsers,
+        //   items: [
+        //     {
+        //       title: "Manage role",
+        //       url: "#",
+        //     },
+        //     {
+        //       title: "All Users",
+        //       url: "#",
+        //     },
+        //     {
+        //       title: "Report clients",
+        //       url: "#",
+        //     },
+        //   ],
+        // },
+        // {
+        //   title: "Order Management",
+        //   url: "#",
+        //   icon: MdOutlineShoppingCartCheckout,
+        //   items: [
+        //     {
+        //       title: "Order approve/reject",
+        //       url: "#",
+        //     },
+        //     {
+        //       title: "Delivery man assign",
+        //       url: "#",
+        //     },
+        //     {
+        //       title: "Order status update",
+        //       url: "#",
+        //     },
+        //   ],
+        // },
+        // {
+        //   title: "Settings",
+        //   url: "#",
+        //   icon: Settings2,
+        //   items: [
+        //     {
+        //       title: "General",
+        //       url: "#",
+        //     },
+        //     {
+        //       title: "Edit profile",
+        //       url: "#",
+        //     },
+        //   ],
+        // },
       ],
-      navSecondary: [
-        {
-          title: "Support",
-          url: "#",
-          icon: LifeBuoy,
-        },
-        {
-          title: "Feedback",
-          url: "#",
-          icon: Send,
-        },
-      ],
+      // navSecondary: [
+      //   {
+      //     title: "Support",
+      //     url: "#",
+      //     icon: LifeBuoy,
+      //   },
+      //   {
+      //     title: "Feedback",
+      //     url: "#",
+      //     icon: Send,
+      //   },
+      // ],
     };
 
     
@@ -155,7 +155,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        {/* <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data?.user} />

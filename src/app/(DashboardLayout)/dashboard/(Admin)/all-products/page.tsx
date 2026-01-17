@@ -20,18 +20,18 @@ import {
 } from "@/components/ui/table";
 
 import { TProducts } from "@/types/TProducts";
+
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function AllProducts() {
 
   const [products, setProducts] = useState<TProducts[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedUpdateProductId, setSelectedUpdateProductId] = useState<
-    string | null
-  >(null);
-  const [modalOpen, setModalOpen] = useState(false);
+
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [selectedDeleteProductId, setSelectedDeleteProductId] = useState<
     string | null
@@ -41,8 +41,8 @@ export default function AllProducts() {
     try {
       const res = await axios.get("/api/products");
       setProducts(res?.data);
-    } catch (error) {
-      console.error("Failed to fetch Products", error);
+    } catch (err) {
+      toast.error("Failed to fetch Products");
     } finally {
       setLoading(false);
     }
@@ -51,6 +51,8 @@ export default function AllProducts() {
   useEffect(() => {
     fetchProducts();
   }, []);
+  
+  
 
   return (
     <main className="min-h-screen bg-gray-50 p-6">
@@ -78,8 +80,8 @@ export default function AllProducts() {
               <TableHeader>
                 <TableRow>
                   <TableHead>Title</TableHead>
-                  <TableHead>Date</TableHead>
-                  <TableHead>Location</TableHead>
+                  <TableHead>Price</TableHead>
+                  <TableHead>Stock</TableHead>
                   <TableHead>Image</TableHead>
                   <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
@@ -91,21 +93,27 @@ export default function AllProducts() {
                     <TableCell className="font-medium">
                       {product.title}
                     </TableCell>
-                    {/* <TableCell>{product?.date}</TableCell>
-                    <TableCell>{product?.location}</TableCell> */}
+                    <TableCell>$ {product?.originalPrice}</TableCell>
+                    <TableCell>
+                      {product?.stock}{" "}
+                      <span className="text-green-600 font-semibold">
+                        ({product?.stockQuantity})
+                      </span>
+                    </TableCell>
                     <TableCell className="truncate max-w-50">
-                      {product.image}
+                      {
+                        <Image
+                          className="rounded-md"
+                          alt="image"
+                          width="50"
+                          height={50}
+                          src={`${product.image}`}
+                        />
+                      }
                     </TableCell>
                     <TableCell className="text-right space-x-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => {
-                          setSelectedUpdateProductId(product.id!);
-                          setModalOpen(true);
-                        }}
-                      >
-                        Edit
+                      <Button size="sm" variant="outline">
+                        <Link href={`/dashboard/update-product/${product.id}`}>Edit</Link>
                       </Button>
 
                       <Button
@@ -126,13 +134,6 @@ export default function AllProducts() {
           )}
         </CardContent>
       </Card>
-
-      <UpdateProductModal
-        productId={selectedUpdateProductId || ""}
-        open={modalOpen}
-        onClose={setModalOpen}
-        onUpdated={fetchProducts}
-      />
 
       <DeleteProductModal
         productId={selectedDeleteProductId || ""}

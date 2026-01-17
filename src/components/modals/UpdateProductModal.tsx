@@ -10,9 +10,12 @@ import {
 } from "@/components/ui/dialog";
 import { Field, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { TProducts } from "@/types/TProducts";
+import { TProductDetails } from "@/types/TProductDetails";
+// import { TProducts } from "@/types/TProducts";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { Textarea } from "../ui/textarea";
 
 interface EditProductModalProps {
   productId: string;
@@ -32,7 +35,7 @@ export function UpdateProductModal({
     handleSubmit,
     reset,
     formState: { isSubmitting },
-  } = useForm<TProducts>({
+  } = useForm<TProductDetails>({
     defaultValues: {
       title: "",
       image: "",
@@ -48,9 +51,9 @@ export function UpdateProductModal({
 
     const fetchEvent = async () => {
       try {
-        const res = await fetch(`/api/events/${productId}`);
-        if (!res.ok) throw new Error("Failed to fetch event");
-        const data: TProducts = await res.json();
+        const res = await axios.get(`/api/products/${productId}`);
+        if (!res) throw new Error("Failed to fetch product");
+        const data: TProductDetails = await res?.data;
         console.log(data);
         // Prefill the form with fetched data
         reset({
@@ -66,22 +69,22 @@ export function UpdateProductModal({
     fetchEvent();
   }, [productId, open, reset]);
 
-  const onSubmit = async (data: Partial<TProducts>) => {
+  const onSubmit = async (data: Partial<TProductDetails>) => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/products/${productId}`, {
+      const res = await axios.patch(`/api/products/${productId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
-      if (!res.ok) throw new Error("Update failed");
+      if (res) throw new Error("update product successfull");
 
       onUpdated();
       onClose(false);
     } catch (error) {
       console.error(error);
-      alert("Failed to update event");
+      alert("Failed to update product");
     } finally {
       setLoading(false);
     }
@@ -94,7 +97,7 @@ export function UpdateProductModal({
           <DialogTitle>Edit Product</DialogTitle>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit(onSubmit)}>
+        {/* <form onSubmit={handleSubmit(onSubmit)}>
           <FieldGroup>
             <Field>
               <FieldLabel>Title</FieldLabel>
@@ -106,6 +109,183 @@ export function UpdateProductModal({
               <Input {...register("image", { required: true })} />
             </Field>
           </FieldGroup>
+
+          <DialogFooter className="mt-4 flex justify-end gap-2">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => onClose(false)}
+            >
+              Cancel
+            </Button>
+
+            <Button type="submit" disabled={loading || isSubmitting}>
+              {loading ? "Updating..." : "Update Product"}
+            </Button>
+          </DialogFooter>
+        </form> */}
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col md:flex-row gap-5 pb-5">
+            {/* LEFT GROUP */}
+            <FieldGroup>
+              {/* Title */}
+              <Field>
+                <FieldLabel>Title</FieldLabel>
+                <Input
+                  placeholder="e.g. Indoor Plant Bundle"
+                  {...register("title", { required: true })}
+                />
+              </Field>
+
+              {/* Short Description */}
+              <Field>
+                <FieldLabel>Short Description</FieldLabel>
+                <Textarea
+                  placeholder="Enter short description"
+                  {...register("shortDescription", { required: true })}
+                ></Textarea>
+              </Field>
+
+              {/* Long Description */}
+              <Field>
+                <FieldLabel>Long Description</FieldLabel>
+                <Textarea
+                  placeholder="Enter long description"
+                  {...register("longDescription", { required: true })}
+                ></Textarea>
+              </Field>
+
+              {/* Category */}
+              <Field>
+                <FieldLabel>Category</FieldLabel>
+                <Input
+                  placeholder="e.g. Indoor Plants"
+                  {...register("category", { required: true })}
+                />
+              </Field>
+
+              {/* Tags */}
+              <Field>
+                <FieldLabel>Tags (comma separated)</FieldLabel>
+                <Input
+                  placeholder="e.g. indoor, home decor, air purifying"
+                  {...register("tags")}
+                />
+              </Field>
+
+              {/* Upload Image */}
+              <Field>
+                <FieldLabel>Main Image</FieldLabel>
+                <Input {...register("image", { required: true })} type="file" />
+              </Field>
+
+              {/* Gallery */}
+              <Field>
+                <FieldLabel>Gallery Images</FieldLabel>
+                <Input
+                  type="text"
+                  placeholder="url1, url2, url3"
+                  {...register("gallery")}
+                />
+              </Field>
+            </FieldGroup>
+
+            {/* RIGHT GROUP */}
+            <FieldGroup>
+              {/* Original Price */}
+              <Field>
+                <FieldLabel>Original Price</FieldLabel>
+                <Input
+                  placeholder="e.g. 149"
+                  type="number"
+                  {...register("pricing.originalPrice")}
+                />
+              </Field>
+
+              {/* Discount Price */}
+              <Field>
+                <FieldLabel>Discount Price</FieldLabel>
+                <Input
+                  placeholder="e.g. 89"
+                  type="number"
+                  {...register("pricing.discountPrice")}
+                />
+              </Field>
+
+              {/* Discount Percent */}
+              <Field>
+                <FieldLabel>Discount %</FieldLabel>
+                <Input
+                  type="number"
+                  placeholder="e.g. 40"
+                  {...register("pricing.discountPercent")}
+                />
+              </Field>
+
+              {/* Stock Status */}
+              <Field>
+                <FieldLabel>Stock Status</FieldLabel>
+                <Input
+                  placeholder="e.g. In Stock"
+                  {...register("stock.status")}
+                />
+              </Field>
+
+              {/* Stock Quantity */}
+              <Field>
+                <FieldLabel>Stock Quantity</FieldLabel>
+                <Input
+                  type="number"
+                  placeholder="e.g. 20"
+                  {...register("stock.quantity")}
+                />
+              </Field>
+
+              {/* time left */}
+              <Field>
+                <FieldLabel>Time left</FieldLabel>
+                <Input
+                  placeholder="e.g. 2h 45m left"
+                  {...register("timeLeft")}
+                />
+              </Field>
+
+              {/* careInstructions */}
+              <Field>
+                <FieldLabel>Care Instructions (Coma separated)</FieldLabel>
+                <Input
+                  placeholder="e.g. Avoid direct sunlight, Water when topsoil is dry, ..."
+                  {...register("careInstructions")}
+                />
+              </Field>
+
+              {/* Rating */}
+              {/* <Field>
+                  <FieldLabel>Average Rating</FieldLabel>
+                  <Input
+                    type="number"
+                    step="0.1"
+                    {...register("rating.average")}
+                  />
+                </Field> */}
+
+              {/* Reviews */}
+              {/* <Field>
+                  <FieldLabel>Total Reviews</FieldLabel>
+                  <Input type="number" {...register("rating.totalReviews")} />
+                </Field> */}
+
+              {/* Features */}
+              <Field>
+                <FieldLabel>Features (Coma separeted)</FieldLabel>
+                <Input
+                  placeholder="e.g. Care Guide Included, Free Home Delivery, .."
+                  {...register("features")}
+                />
+              </Field>
+            </FieldGroup>
+          </div>
 
           <DialogFooter className="mt-4 flex justify-end gap-2">
             <Button

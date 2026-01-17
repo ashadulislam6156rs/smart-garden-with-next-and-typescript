@@ -6,7 +6,8 @@ export interface TProducts {
   image: string;
 
   shortDescription: string;
-
+  stock: string;
+  stockQuantity: number;
   currency: string;
 
   originalPrice: number;

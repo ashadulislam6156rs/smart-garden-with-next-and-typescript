@@ -1,11 +1,12 @@
 import React from "react";
-import { Tag, Shield, TrendingDown, ShoppingCart, Eye } from "lucide-react";
+import { Tag, TrendingDown, ArrowRight } from "lucide-react";
 import { TProducts } from "@/types/TProducts";
 import Link from "next/link";
 
 interface ProductCardProps {
   product: TProducts;
 }
+
 const ProductCard = ({ product }: ProductCardProps) => {
   const {
     category,
@@ -17,73 +18,61 @@ const ProductCard = ({ product }: ProductCardProps) => {
     originalPrice,
     shortDescription,
     title,
-    warranty,
   } = product;
 
   return (
-    <div className="bg-white flex flex-col justify-between h-[500px] rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group">
-      {/* Image Container */}
-      <div className="relative overflow-hidden h-54">
+    <div className="bg-white flex flex-col rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
+      {/* Image */}
+      <div className="relative overflow-hidden h-56">
         <img
           src={image}
           alt={title}
-          className="w-full h-54 object-cover group-hover:scale-110 transition-transform duration-500"
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
 
-        {/* Discount Badge */}
         {discountPercent > 0 && (
-          <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1.5 rounded-full font-bold text-sm shadow-lg flex items-center gap-1">
+          <div className="absolute top-3 right-3 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 shadow">
             <TrendingDown className="w-4 h-4" />
             {discountPercent}% OFF
           </div>
         )}
 
-        {/* Category Badge */}
-        <div className="absolute top-4 left-4 bg-emerald-600 text-white px-3 py-1.5 rounded-full text-sm font-semibold shadow-lg flex items-center gap-1">
+        <div className="absolute top-3 left-3 bg-emerald-600 text-white px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 shadow">
           <Tag className="w-3.5 h-3.5" />
           {category}
         </div>
       </div>
 
-      {/* Content Container */}
-      <div className="p-6">
-        {/* Title */}
-        <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-1">
+      {/* Content */}
+      <div className="p-5 flex flex-col flex-grow">
+        <h3 className="text-lg font-bold text-gray-800 mb-1 line-clamp-1">
           {title}
         </h3>
 
-        {/* Description */}
         <p className="text-gray-600 text-sm mb-4 line-clamp-2">
           {shortDescription}
         </p>
 
-        {/* Price Section */}
-        <div className="flex items-baseline gap-2 mb-4">
-          <span className="text-3xl font-bold text-emerald-600">
-            {currency} {discountPrice}
+        {/* Price */}
+        <div className="flex items-end gap-2 mb-5">
+          <span className="text-2xl font-bold text-emerald-600">
+            {currency ? currency : "USD"} {discountPrice}
           </span>
           {originalPrice > discountPrice && (
-            <span className="text-lg text-gray-400 line-through">
-              {currency} {originalPrice}
+            <span className="text-sm text-gray-400 line-through">
+              {currency ? currency : "USD"} {originalPrice}
             </span>
           )}
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex gap-3">
-          {/* Add to Cart Button */}
-          <button className="flex-1 cursor-pointer bg-gradient-to-r from-emerald-500 to-emerald-700 hover:from-emerald-600 hover:to-emerald-700 text-white font-semibold py-1 px-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
-            <ShoppingCart className="w-5 h-5" />
-            Add to Cart
-          </button>
-
-          {/* View Details Button */}
+        {/* Actions */}
+        <div className="flex gap-3 mt-auto">
           <Link
             href={`/products/${id}`}
-            className="flex-1 bg-slate-50 hover:bg-slate-200 text-gray-700 font-semibold py-3 px-4 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md transform hover:-translate-y-0.5 flex items-center justify-center cursor-pointer gap-2"
+            className="w-full py-2 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-xl hover:from-emerald-700 hover:to-teal-700 transition-all flex items-center justify-center gap-2 group/btn"
           >
-            <Eye className="w-5 h-5" />
             View Details
+            <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
           </Link>
         </div>
       </div>

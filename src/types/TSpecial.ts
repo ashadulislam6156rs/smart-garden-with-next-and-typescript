@@ -1,4 +1,5 @@
 export interface TSpecial {
+  _id: string,
   image: string;
   title: string;
   originalPrice: number;

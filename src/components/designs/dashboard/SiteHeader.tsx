@@ -32,15 +32,9 @@ export function SiteHeader() {
         <Separator orientation="vertical" className="mr-2 h-4" />
         <Breadcrumb className="hidden sm:block">
           <BreadcrumbList>
-            <BreadcrumbItem>
-              <BreadcrumbLink href="/">
-               Home
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              {/* <BreadcrumbPage></BreadcrumbPage> */}
-            </BreadcrumbItem>
+            <BreadcrumbItem>Welcome to dashboard</BreadcrumbItem>
+            {/* <BreadcrumbSeparator /> */}
+            
           </BreadcrumbList>
         </Breadcrumb>
         <SearchForm className="w-full sm:ml-auto sm:w-auto" />

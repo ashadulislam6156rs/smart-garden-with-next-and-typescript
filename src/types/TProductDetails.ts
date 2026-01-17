@@ -1,4 +1,5 @@
 export interface TProductDetails {
+  id: string;
   slug: string;
   image: string;
   gallery: string;

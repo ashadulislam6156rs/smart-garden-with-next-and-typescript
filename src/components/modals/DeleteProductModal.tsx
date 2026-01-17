@@ -8,10 +8,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import axios from "axios";
 
 import { useState } from "react";
 
-interface DeleteEventModalProps {
+interface DeleteProductModalProps {
   productId: string;
   open: boolean;
   onClose: (open: boolean) => void;
@@ -23,22 +24,22 @@ export function DeleteProductModal({
   open,
   onClose,
   onDeleted,
-}: DeleteEventModalProps) {
+}: DeleteProductModalProps) {
   const [loading, setLoading] = useState(false);
 
   const handleDelete = async () => {
     if (!productId) return;
 
+    
+
     setLoading(true);
     try {
-      const res = await fetch(`/api/products/${productId}`, {
-        method: "DELETE",
-      });
+      const res = await axios.delete(`/api/products/${productId}`);
 
-      if (!res.ok) {
+      if (!res) {
         throw new Error("Failed to delete product");
       }
-
+     alert("Product deleted successfully!");
       onDeleted();
       onClose(false);
     } catch (error) {
@@ -53,11 +54,11 @@ export function DeleteProductModal({
     <Dialog open={open} onOpenChange={onClose}>
       <DialogContent className="max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-destructive">Delete Event</DialogTitle>
+          <DialogTitle className="text-destructive">Delete Product</DialogTitle>
         </DialogHeader>
 
         <div className="text-sm text-muted-foreground">
-          Are you sure you want to delete this event? This action{" "}
+          Are you sure you want to delete this product? This action{" "}
           <strong>cannot be undone</strong>.
         </div>
 
@@ -77,7 +78,7 @@ export function DeleteProductModal({
             onClick={handleDelete}
             disabled={loading}
           >
-            {loading ? "Deleting..." : "Delete Event"}
+            {loading ? "Deleting..." : "Delete Product"}
           </Button>
         </DialogFooter>
       </DialogContent>
