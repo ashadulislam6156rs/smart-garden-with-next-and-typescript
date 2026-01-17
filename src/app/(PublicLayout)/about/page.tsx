@@ -10,9 +10,9 @@ import {
 export default function AboutPage() {
   const features = [
     {
-      title: "Smart Event Planning",
+      title: "Smart Product Planning",
       description:
-        "Plan, organize, and manage events seamlessly with modern tools designed for speed and reliability.",
+        "Plan, organize, and manage products seamlessly with modern tools designed for speed and reliability.",
       icon: CalendarDays,
     },
     {
@@ -24,7 +24,7 @@ export default function AboutPage() {
     {
       title: "Premium Experience",
       description:
-        "Deliver smooth and engaging event experiences with a focus on performance and usability.",
+        "Deliver smooth and engaging product experiences with a focus on performance and usability.",
       icon: Sparkles,
     },
   ];
@@ -63,14 +63,14 @@ export default function AboutPage() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent mb-4 sm:mb-6 px-2">
-            About Next Event
+            About Next Product
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-gray-700 max-w-4xl mx-auto leading-relaxed px-4">
-            Next Event is a modern event management platform built to simplify
-            how events are created, managed, and experienced. From small meetups
-            to large-scale conferences, Next Event ensures efficiency, clarity,
-            and reliability at every step.
+            Next Product is a modern product management platform built to simplify
+            how products are created, managed, and experienced. From small
+            meetups to large-scale conferences, Next product ensures efficiency,
+            clarity, and reliability at every step.
           </p>
         </div>
       </section>
@@ -82,7 +82,7 @@ export default function AboutPage() {
             What Makes Us Different
           </h2>
           <p className="text-sm sm:text-base text-gray-600 max-w-2xl mx-auto px-4">
-            Powerful features designed to transform your event management
+            Powerful features designed to transform your product management
             experience
           </p>
         </div>
@@ -120,7 +120,7 @@ export default function AboutPage() {
           <p className="text-sm sm:text-base md:text-xl text-emerald-50 leading-relaxed px-4">
             Our mission is to empower organizers with intuitive tools and a
             scalable architecture, enabling them to focus on what truly matters:
-            creating memorable events. Next Event leverages modern web
+            creating memorable products. Next product leverages modern web
             technologies to deliver performance, security, and an exceptional
             user experience.
           </p>
@@ -166,10 +166,10 @@ export default function AboutPage() {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
         <div className="bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-600 rounded-2xl sm:rounded-3xl p-8 sm:p-10 md:p-12 text-center shadow-2xl">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4 px-2">
-            Ready to Transform Your Events?
+            Ready to Transform Your products?
           </h2>
           <p className="text-sm sm:text-base md:text-xl text-emerald-50 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
-            Join thousands of organizers who trust Next Event to power their
+            Join thousands of organizers who trust Next product to power their
             most important gatherings.
           </p>
           <button className="bg-white text-emerald-700 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-base sm:text-lg hover:bg-emerald-50 transition-all shadow-lg hover:shadow-xl transform hover:scale-105">

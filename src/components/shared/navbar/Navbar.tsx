@@ -22,7 +22,6 @@ export const Header = () => {
   const { isAuthenticated, logout, user } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
 
-
   const menuItems = [
     { title: "Home", url: "/" },
     { title: "Products", url: "/products" },

@@ -1,4 +1,5 @@
 import { mongoConnect } from "@/lib/mongoConnect";
+import { TProductDetails } from "@/types/TProductDetails";
 import { TProducts } from "@/types/TProducts";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -35,11 +36,11 @@ export async function GET() {
 
 
 
-// POST new event
+// POST new Product
 export async function POST(req: NextRequest) {
   try {
     const { db, client } = await mongoConnect();
-    const data: TProducts = await req.json();
+    const data: TProductDetails = await req.json();
 
     // Basic validation
     if (!data.title || !data.category) {
@@ -52,7 +53,6 @@ export async function POST(req: NextRequest) {
 
     const result = await db.collection("products").insertOne({
       ...data,
-      createdAt: new Date(),
     });
 
     // client.close();

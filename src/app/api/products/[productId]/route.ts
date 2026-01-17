@@ -2,7 +2,7 @@ import { mongoConnect } from "@/lib/mongoConnect";
 import { ObjectId } from "mongodb";
 import { NextRequest, NextResponse } from "next/server";
 
-// Get event by ID
+// Get Product by ID
 export async function GET(
   req: NextRequest,
   context: { params: Promise<{ productId: string }> }

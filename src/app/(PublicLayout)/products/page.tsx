@@ -10,7 +10,7 @@ const Products = () => {
      const [loading, setLoading] = useState(true);
 
  useEffect(() => {
-   async function fetchEvents() {
+   async function fetchProducts() {
      try {
        const res = await axios.get("/api/products");
        setProducts(res.data);
@@ -21,7 +21,7 @@ const Products = () => {
      }
    }
 
-   fetchEvents();
+   fetchProducts();
  }, []);
     
     

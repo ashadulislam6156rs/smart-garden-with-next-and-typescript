@@ -1,14 +1,14 @@
 export interface TProductDetails {
   slug: string;
   image: string;
-  gallery: string[];
+  gallery: string;
 
   title: string;
   shortDescription: string;
   longDescription: string;
 
   category: string;
-  tags: string[];
+  tags: string;
 
   pricing: {
     currency: string;
@@ -18,7 +18,7 @@ export interface TProductDetails {
   };
 
   stock: {
-    status: "In Stock" | "Out of Stock";
+    status: string;
     quantity: number;
   };
 
@@ -34,7 +34,7 @@ export interface TProductDetails {
     totalReviews: number;
   };
 
-  features: string[];
+  features: string;
 
   specifications: {
     plantCount: number;
@@ -44,7 +44,7 @@ export interface TProductDetails {
     petFriendly: boolean;
   };
 
-  careInstructions: string[];
+  careInstructions: string;
 
   delivery: {
     estimatedTime: string;

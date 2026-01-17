@@ -39,7 +39,7 @@ const ProductDetails = () => {
 
     setLoading(true); 
 
-    async function fetchEvents() {
+    async function fetchProducts() {
       try {
         const res = await axios.get(`/api/products/${id}`);
         setProduct(res.data);
@@ -50,7 +50,7 @@ const ProductDetails = () => {
       }
     }
 
-    fetchEvents();
+    fetchProducts();
   }, [id]);
 
 
@@ -60,21 +60,10 @@ const ProductDetails = () => {
     );
   };
 
-  const handlePrev = () => {
-    setSelectedImage((prev) =>
-      prev === 0 ? product.gallery.length - 1 : prev - 1
-    );
-  };
 
-  const handleNext = () => {
-    setSelectedImage((prev) =>
-      prev === product.gallery.length - 1 ? 0 : prev + 1
-    );
-  };
-
-
-
-
+  if (id !== product?._id) {
+  return <p>Product Not Found</p>
+}
   if (loading || !product) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -250,11 +239,11 @@ const ProductDetails = () => {
                   <div className="flex items-baseline gap-3 mb-1">
                     <span className="text-3xl md:text-4xl font-bold text-emerald-600">
                       {product.pricing.currency}{" "}
-                      {product.pricing.discountPrice.toFixed(2)}
+                      {product.pricing.discountPrice}
                     </span>
                     <span className="text-xl text-gray-400 line-through">
                       {product.pricing.currency}{" "}
-                      {product.pricing.originalPrice.toFixed(2)}
+                      {product.pricing.originalPrice}
                     </span>
                     <span className="bg-red-100 text-red-600 px-2.5 py-1 rounded-md font-bold text-sm">
                       -{product.pricing.discountPercent}%

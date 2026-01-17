@@ -1,12 +1,22 @@
 
 import RegisterForm from "@/components/auth/RegisterForm";
+import { ArrowLeftFromLine } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 
 const Register = () => {
   return (
-    <div className="min-h-screen max-w-7xl mx-auto ">
+    <div className=" max-w-7xl mx-auto px-5">
+      <Link
+        className="px-4 mt-5 ml-5 flex w-fit text-sm items-center gap-2 py-2 bg-green-600 text-white cursor-pointer rounded-md"
+        href={"/"}
+      >
+        <ArrowLeftFromLine size={20} />
+        Back home
+      </Link>
       <div className="m-5 md:bg-gradient-to-br overflow-hidden md:from-slate-50 md:via-emerald-50 md:to-teal-50 shadow-2xl rounded-2xl flex flex-col lg:flex-row items-center justify-center font-sans">
         <title>Create Account | eTutionTrack</title>
+
         {/* Right Side: Visual Section */}
         <div className="hidden lg:flex w-full lg:w-1/2 flex-col items-center justify-center relative p-8">
           {/* Decorative circles */}

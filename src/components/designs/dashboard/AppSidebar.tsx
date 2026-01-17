@@ -1,18 +1,9 @@
 "use client";
 
 import * as React from "react";
-import {
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  LifeBuoy,
-  Map,
-  PieChart,
-  Send,
-  Settings2,
-  SquareTerminal,
-} from "lucide-react";
+import { LifeBuoy, Send, Settings2, Blocks } from "lucide-react";
+import { FaUsers } from "react-icons/fa6";
+import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 
 
 import {
@@ -25,144 +16,122 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { NavMain } from "./NavMain";
-import { NavProjects } from "./NavProjects";
 import { NavSecondary } from "./NavSecondary";
 import { NavUser } from "./NavUser";
 import Link from "next/link";
 import Image from "next/image";
+import { useAuth } from "@/hooks/useAuth";
 
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-        avatar: "/avatars/shadcn.jpg",
-    
-  },
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: true,
-      items: [
+
+
+export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+
+
+    const { user } = useAuth();
+
+    const data = {
+      user: {
+        name: user?.name,
+        email: user?.email,
+        avatar: user?.image,
+      },
+      navMain: [
         {
-          title: "History",
-          url: "#",
+          title: "Products Management",
+          url: "dashboard",
+          icon: Blocks,
+          isActive: true,
+          items: [
+            {
+              title: "Create product",
+              url: "create-product",
+            },
+            {
+              title: "All products",
+              url: "all-products",
+            },
+            {
+              title: "Order history",
+              url: "#",
+            },
+          ],
         },
         {
-          title: "Starred",
+          title: "Users Management",
           url: "#",
+          icon: FaUsers,
+          items: [
+            {
+              title: "Manage role",
+              url: "#",
+            },
+            {
+              title: "All Users",
+              url: "#",
+            },
+            {
+              title: "Report clients",
+              url: "#",
+            },
+          ],
+        },
+        {
+          title: "Order Management",
+          url: "#",
+          icon: MdOutlineShoppingCartCheckout,
+          items: [
+            {
+              title: "Order approve/reject",
+              url: "#",
+            },
+            {
+              title: "Delivery man assign",
+              url: "#",
+            },
+            {
+              title: "Order status update",
+              url: "#",
+            },
+          ],
         },
         {
           title: "Settings",
           url: "#",
+          icon: Settings2,
+          items: [
+            {
+              title: "General",
+              url: "#",
+            },
+            {
+              title: "Edit profile",
+              url: "#",
+            },
+          ],
         },
       ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
+      navSecondary: [
         {
-          title: "Genesis",
+          title: "Support",
           url: "#",
+          icon: LifeBuoy,
         },
         {
-          title: "Explorer",
+          title: "Feedback",
           url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
+          icon: Send,
         },
       ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Support",
-      url: "#",
-      icon: LifeBuoy,
-    },
-    {
-      title: "Feedback",
-      url: "#",
-      icon: Send,
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
-};
+    };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+    
+
   return (
     <Sidebar
       className="top-(--header-height) h-[calc(100svh-var(--header-height))]!"
       {...props}
     >
-      <SidebarHeader>
+      <SidebarHeader >
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
@@ -186,11 +155,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={data?.user} />
       </SidebarFooter>
     </Sidebar>
   );
