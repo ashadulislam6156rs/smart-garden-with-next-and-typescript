@@ -38,77 +38,79 @@ type FormValues = {
 };
 
 const RegisterForm: React.FC = () => {
- const [showPassword, setShowPassword] = useState(false);
- const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
- const {
-   register,
-   control,
-   handleSubmit,
-   formState: { errors },
- } = useForm<FormValues>();
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
 
- const passwordValidation = {
-   required: "Password is required",
-   minLength: { value: 6, message: "Password must be at least 6 characters!" },
-   validate: {
-     hasUpper: (v: string | undefined) =>
-       /[A-Z]/.test(v ?? "") || "Must include at least 1 uppercase letter!",
-     hasLow: (v: string | undefined) =>
-       /[a-z]/.test(v ?? "") || "Must include at least 1 lowercase letter!",
-     hasNum: (v: string | undefined) =>
-       /\d/.test(v ?? "") || "Must include at least 1 number!",
-   },
- };
+  //  TypeScript compatible password validation
+  const passwordValidation = {
+    required: "Password is required",
+    minLength: { value: 6, message: "Password must be at least 6 characters!" },
+    validate: {
+      hasUpper: (v: string | null | undefined) =>
+        /[A-Z]/.test(v ?? "") || "Must include at least 1 uppercase letter!",
+      hasLow: (v: string | null | undefined) =>
+        /[a-z]/.test(v ?? "") || "Must include at least 1 lowercase letter!",
+      hasNum: (v: string | null | undefined) =>
+        /\d/.test(v ?? "") || "Must include at least 1 number!",
+    },
+  };
 
- const handleUserRegister = async (data: FormValues) => {
-   setLoading(true);
-   try {
-     let finalPhotoURL = "";
+  const handleUserRegister = async (data: FormValues) => {
+    setLoading(true);
+    try {
+      let finalPhotoURL = "";
 
-     if (data.photoURL && data.photoURL.length > 0) {
-       const formData = new FormData();
-       formData.append("image", data.photoURL[0]);
+      if (data.photoURL && data.photoURL.length > 0) {
+        const formData = new FormData();
+        formData.append("image", data.photoURL[0]);
 
-       const imgResponse = await axios.post(
-         `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMAGE_API_KEY}`,
-         formData
-       );
-       finalPhotoURL = imgResponse.data.data.url;
-     }
+        const imgResponse = await axios.post(
+          `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMAGE_API_KEY}`,
+          formData,
+        );
+        finalPhotoURL = imgResponse.data.data.url;
+      }
 
-     const userData = {
-       fullName: data.fullName,
-       email: data.email,
-       password: data.password,
-       gender: data.gender,
-       role: "Client",
-       phone: data.phone,
-       photoURL: finalPhotoURL,
-     };
+      const userData = {
+        fullName: data.fullName,
+        email: data.email,
+        password: data.password,
+        gender: data.gender,
+        role: "Client",
+        phone: data.phone,
+        photoURL: finalPhotoURL,
+      };
 
-     await registerUser(userData);
-     alert("Registration Successful!");
-     setLoading(false)
+      await registerUser(userData);
+      alert("Registration Successful!");
+      setLoading(false);
 
-     //user direct login
+      // User direct login
       const res = await signIn("credentials", {
         email: data.email,
         password: data.password,
         redirect: true,
-        callbackUrl: "/",
+        callbackUrl: "/products",
       });
       if (res?.error) {
         alert("Invalid email or password!");
       }
-   } catch (error: unknown) {
-     if (error instanceof Error) {
-       console.error("Registration failed:", error.message);
-     } else {
-       console.error("An unknown error occurred");
-     }
-   }
- };
+    } catch (error: unknown) {
+      setLoading(false);
+      if (error instanceof Error) {
+        console.error("Registration failed:", error.message);
+      } else {
+        console.error("An unknown error occurred");
+      }
+    }
+  };
 
   return (
     <>
@@ -250,6 +252,7 @@ const RegisterForm: React.FC = () => {
             </div>
           </div>
         </div>
+
         {/* Phone */}
         <div>
           <Label className="mb-2 text-sm font-semibold text-gray-700">
@@ -271,6 +274,7 @@ const RegisterForm: React.FC = () => {
             </p>
           )}
         </div>
+
         {/* Upload Image */}
         <div>
           <Label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -292,6 +296,7 @@ const RegisterForm: React.FC = () => {
             />
           </label>
         </div>
+
         {/* Submit */}
         {loading ? (
           <Button size="sm" variant="outline" disabled>

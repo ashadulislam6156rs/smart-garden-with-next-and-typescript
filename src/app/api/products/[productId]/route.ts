@@ -38,7 +38,7 @@ export async function GET(
 
 export async function PATCH(
   req: NextRequest,
-  context: { params: { productId: string } },
+  context: { params: Promise<{ productId: string }> },
 ) {
   try {
     const { productId } = await context.params;
@@ -98,7 +98,7 @@ export async function PATCH(
 
 export async function DELETE(
   req: NextRequest,
-  context: { params: { productId: string } },
+  context: { params: Promise<{ productId: string }> },
 ) {
   try {
     const { productId } = await context.params;

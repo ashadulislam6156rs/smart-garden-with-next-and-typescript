@@ -39,8 +39,8 @@ export default function NotFound() {
             Oops! Page Not Found
           </h2>
           <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Looks like this plant has wilted away. The page you're looking for
-            doesn't exist or has been moved to a new garden.
+            Looks like this plant has wilted away. The page you are looking for
+            does not exist or has been moved to a new garden.
           </p>
         </div>
 

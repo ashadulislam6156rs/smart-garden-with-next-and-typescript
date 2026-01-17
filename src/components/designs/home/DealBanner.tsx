@@ -1,6 +1,21 @@
 import { ArrowRight } from "lucide-react";
+import React from "react";
 
-const DealBanner = ({ title, subtitle, ctaText, bgGradient, icon: Icon }) => {
+interface DealBannerProps {
+  title: string;
+  subtitle: string;
+  ctaText: string;
+  bgGradient: string;
+  icon: React.ComponentType<{ className?: string }>; // Icon component
+}
+
+const DealBanner: React.FC<DealBannerProps> = ({
+  title,
+  subtitle,
+  ctaText,
+  bgGradient,
+  icon: Icon,
+}) => {
   return (
     <div
       className={`${bgGradient} rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden`}

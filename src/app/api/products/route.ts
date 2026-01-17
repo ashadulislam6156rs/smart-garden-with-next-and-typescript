@@ -1,6 +1,5 @@
 import { mongoConnect } from "@/lib/mongoConnect";
 import { TProductDetails } from "@/types/TProductDetails";
-import { TProducts } from "@/types/TProducts";
 import { NextRequest, NextResponse } from "next/server";
 
 
