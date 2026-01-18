@@ -125,12 +125,15 @@ export default function AllProducts() {
                     </TableCell>
                     <TableCell className="text-right space-x-2">
                       <Button size="sm" variant="outline">
-                        <Link href={`/dashboard/update-product/${product.id}`}>Edit</Link>
+                        <Link href={`/dashboard/update-product/${product.id}`}>
+                          Edit
+                        </Link>
                       </Button>
 
                       <Button
                         size="sm"
                         variant="destructive"
+                        className="cursor-pointer"
                         onClick={() => {
                           setSelectedDeleteProductId(product.id!);
                           setDeleteOpen(true);

@@ -16,6 +16,7 @@ import {
 import { Label } from "../ui/label";
 import { Button } from "../ui/button";
 import { Spinner } from "../ui/spinner";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -40,6 +41,9 @@ const LoginForm = () => {
       redirect: true,
       callbackUrl: "/products",
     });
+    if (res?.ok) {
+      alert("Login successful");
+    }
 
     if (res?.error) {
       setError("Invalid email or password!");
