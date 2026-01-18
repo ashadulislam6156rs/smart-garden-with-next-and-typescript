@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { TProductDetails } from "@/types/TProductDetails";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -24,7 +25,9 @@ export default function CreateProductPage() {
     formState: { errors },
   } = useForm<TProductDetails>();
 
-  const router = useRouter();
+    const { data: session, status } = useSession();
+    const router = useRouter();
+
 
   const onSubmit = async (data: TProductDetails) => {
     try {
@@ -119,6 +122,14 @@ export default function CreateProductPage() {
       toast.error("Error creating product");
     }
   };
+
+
+  if (status === "loading") return null;
+
+  if (!session) {
+    router.push("/login");
+    return null;
+  }
 
   return (
     <main className="flex items-center justify-center md:p-4">

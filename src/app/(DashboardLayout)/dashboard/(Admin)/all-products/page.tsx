@@ -22,8 +22,10 @@ import {
 import { TProducts } from "@/types/TProducts";
 
 import axios from "axios";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -31,6 +33,8 @@ export default function AllProducts() {
 
   const [products, setProducts] = useState<TProducts[]>([]);
   const [loading, setLoading] = useState(true);
+    const { data: session, status } = useSession();
+    const router = useRouter();
 
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [selectedDeleteProductId, setSelectedDeleteProductId] = useState<
@@ -51,6 +55,14 @@ export default function AllProducts() {
   useEffect(() => {
     fetchProducts();
   }, []);
+
+
+  if (status === "loading") return null;
+
+  if (!session) {
+    router.push("/login");
+    return null;
+  }
   
   
 

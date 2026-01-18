@@ -12,7 +12,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { TProductDetails } from "@/types/TProductDetails";
 import axios from "axios";
-import { useParams } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
@@ -22,6 +23,8 @@ const UpdateProduct = () => {
   const id = params?.id as string;
 
   const [loading, setLoading] = useState(false);
+    const { data: session, status } = useSession();
+    const router = useRouter();
 
   const {
     register,
@@ -129,6 +132,13 @@ const UpdateProduct = () => {
       setLoading(false);
     }
   };
+
+  if (status === "loading") return null;
+
+  if (!session) {
+    router.push("/login");
+    return null;
+  }
 
   return (
     <div className="flex items-center justify-center md:p-4">

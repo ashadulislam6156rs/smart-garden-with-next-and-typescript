@@ -16,9 +16,8 @@ const footerSections = [
   {
     title: "Quick Links",
     links: [
-      { title: "Products", href: "#" },
-      { title: "About", href: "#" },
-      { title: "Pricing", href: "#" },
+      { title: "Products", href: "/products" },
+      { title: "About", href: "/about" },
     ],
   },
   {

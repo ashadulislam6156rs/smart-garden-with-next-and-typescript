@@ -15,6 +15,7 @@ import { useState } from "react";
 import Logo from "../logo/Logo";
 import LogInButton from "@/components/auth/LogInButton";
 import Image from "next/image";
+import { IoLogOutOutline } from "react-icons/io5";
 
 export const Header = () => {
   const router = useRouter();
@@ -104,8 +105,9 @@ export const Header = () => {
               <Button
                 size="sm"
                 onClick={logout}
-                className="bg-red-500 cursor-pointer hover:bg-red-600 text-white"
+                className="bg-green-600 cursor-pointer hover:bg-green-700 text-white"
               >
+                <IoLogOutOutline />
                 Logout
               </Button>
             </>
@@ -206,6 +208,7 @@ export const Header = () => {
                         className="w-full mt-2 border-red-500 text-red-600 hover:bg-red-50"
                         onClick={logout}
                       >
+                        <IoLogOutOutline />
                         Logout
                       </Button>
                     </>
