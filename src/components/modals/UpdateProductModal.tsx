@@ -16,6 +16,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Textarea } from "../ui/textarea";
+import { toast } from "react-toastify";
 
 interface EditProductModalProps {
   productId: string;
@@ -52,9 +53,8 @@ export function UpdateProductModal({
     const fetchEvent = async () => {
       try {
         const res = await axios.get(`/api/products/${productId}`);
-        if (!res) throw new Error("Failed to fetch product");
+        if (!res) toast.error("Failed to fetch product");
         const data: TProductDetails = await res?.data;
-        console.log(data);
         // Prefill the form with fetched data
         reset({
           title: data.title,
@@ -62,7 +62,7 @@ export function UpdateProductModal({
           id: data.id,
         });
       } catch (error) {
-        console.error("Failed to fetch event", error);
+        toast.error("Failed to fetch event");
       }
     };
 
@@ -78,13 +78,13 @@ export function UpdateProductModal({
         body: JSON.stringify(data),
       });
 
-      if (res) throw new Error("update product successfull");
+      if (res) toast.success("update product successfull");
 
       onUpdated();
       onClose(false);
     } catch (error) {
       console.error(error);
-      alert("Failed to update product");
+      toast.error("Failed to update product");
     } finally {
       setLoading(false);
     }

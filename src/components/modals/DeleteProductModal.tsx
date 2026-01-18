@@ -11,6 +11,7 @@ import {
 import axios from "axios";
 
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 interface DeleteProductModalProps {
   productId: string;
@@ -30,21 +31,20 @@ export function DeleteProductModal({
   const handleDelete = async () => {
     if (!productId) return;
 
-    
 
     setLoading(true);
     try {
       const res = await axios.delete(`/api/products/${productId}`);
 
       if (!res) {
-        throw new Error("Failed to delete product");
+        toast.error("Failed to delete product");
       }
-     alert("Product deleted successfully!");
+     toast.success("Product deleted successfully!");
       onDeleted();
       onClose(false);
     } catch (error) {
       console.error(error);
-      alert("Failed to delete product");
+      toast.error("Failed to delete product");
     } finally {
       setLoading(false);
     }

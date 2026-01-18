@@ -26,6 +26,7 @@ import registerUser from "../../../scripts/registerUser";
 import axios from "axios";
 import { Spinner } from "../ui/spinner";
 import { signIn } from "next-auth/react";
+import { toast } from "react-toastify";
 
 type FormValues = {
   fullName: string;
@@ -89,7 +90,7 @@ const RegisterForm: React.FC = () => {
       };
 
       await registerUser(userData);
-      alert("Registration Successful!");
+      toast.success("Registration Successful!");
       setLoading(false);
 
       // User direct login
@@ -100,14 +101,14 @@ const RegisterForm: React.FC = () => {
         callbackUrl: "/products",
       });
       if (res?.error) {
-        alert("Invalid email or password!");
+        toast.error("Invalid email or password!");
       }
     } catch (error: unknown) {
       setLoading(false);
       if (error instanceof Error) {
-        console.error("Registration failed:", error.message);
+        toast.error("Registration failed:");
       } else {
-        console.error("An unknown error occurred");
+        toast.error("An unknown error occurred");
       }
     }
   };

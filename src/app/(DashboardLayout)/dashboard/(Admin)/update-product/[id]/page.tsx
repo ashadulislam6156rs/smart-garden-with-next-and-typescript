@@ -88,7 +88,7 @@ const UpdateProduct = () => {
           timeLeft: data.timeLeft || "",
         });
       } catch (err) {
-        console.error("Fetch failed", err);
+        toast.error("Fetch failed");
       }
     };
 

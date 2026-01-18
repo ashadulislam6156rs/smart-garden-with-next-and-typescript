@@ -16,6 +16,7 @@ import Logo from "../logo/Logo";
 import LogInButton from "@/components/auth/LogInButton";
 import Image from "next/image";
 import { IoLogOutOutline } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 export const Header = () => {
   const router = useRouter();
@@ -104,7 +105,10 @@ export const Header = () => {
               </div>
               <Button
                 size="sm"
-                onClick={logout}
+                onClick={() => {
+                  logout();
+                  toast.success("LogOut successfull.");
+                }}
                 className="bg-green-600 cursor-pointer hover:bg-green-700 text-white"
               >
                 <IoLogOutOutline />
@@ -206,7 +210,10 @@ export const Header = () => {
                       <Button
                         variant="outline"
                         className="w-full mt-2 border-red-500 text-red-600 hover:bg-red-50"
-                        onClick={logout}
+                        onClick={() => {
+                          logout();
+                          toast.success("LogOut successfull.");
+                        }}
                       >
                         <IoLogOutOutline />
                         Logout

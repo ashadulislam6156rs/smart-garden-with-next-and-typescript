@@ -28,6 +28,7 @@ import {
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export function NavUser({
   user,
@@ -43,8 +44,9 @@ export function NavUser({
     const router = useRouter();
 
     const handleSubmit =() => {
-        logout();
-         router.replace("/");
+      logout();
+      toast.success("LogOut successfull.")
+      router.replace("/");
     }
 
   return (
