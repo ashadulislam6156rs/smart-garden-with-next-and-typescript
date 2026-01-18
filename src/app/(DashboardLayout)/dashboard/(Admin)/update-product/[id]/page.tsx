@@ -292,7 +292,11 @@ const UpdateProduct = () => {
             </div>
 
             <Field className="mt-4 flex justify-end gap-2">
-              <Button type="submit" disabled={loading || isSubmitting}>
+              <Button
+                className="cursor-pointer"
+                type="submit"
+                disabled={loading || isSubmitting}
+              >
                 {loading ? "Updating..." : "Update Product"}
               </Button>
             </Field>
