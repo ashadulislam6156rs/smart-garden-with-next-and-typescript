@@ -74,6 +74,7 @@ export function DeleteProductModal({
 
           <Button
             type="button"
+            className="cursor-pointer"
             variant="destructive"
             onClick={handleDelete}
             disabled={loading}
