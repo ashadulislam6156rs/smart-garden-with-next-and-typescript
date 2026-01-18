@@ -38,14 +38,12 @@ const LoginForm = () => {
       email: data.email,
       password: data.password,
       redirect: true,
-      callbackUrl: "/",
+      callbackUrl: "/products",
     });
 
     if (res?.error) {
       setError("Invalid email or password!");
       setLoading(false);
-    } else {
-      router.push("/dashboard");
     }
   };
 
