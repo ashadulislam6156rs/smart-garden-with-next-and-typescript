@@ -277,7 +277,9 @@ export default function CreateProductPage() {
             </div>
 
             <Field className="mt-4 flex justify-end gap-2">
-              <Button type="submit">Create Product</Button>
+              <Button className="cursor-pointer" type="submit">
+                Create Product
+              </Button>
             </Field>
           </form>
         </CardContent>
